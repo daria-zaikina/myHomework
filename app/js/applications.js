@@ -13,6 +13,11 @@ applications = {
 		image: 'assets/shot-3.png',
 		head: 'КАТАЛОГ РАЗРАБОТОК',
 		date: '03 марта 2015'
+	},
+	aplicationThird: {
+		image: 'assets/shot-3.png',
+		head: 'КАТАЛОГ РАЗРАБОТОК',
+		date: '03 марта 2015'
 	}
 };
 
@@ -20,8 +25,10 @@ function getRandomElement (min, max) {
     return Math.floor(Math.random() * (max-min) + min);
     };
 
-function createBlock() {
-    objectLength = Object.keys(applications).length;
+function createRandomBlock() {
+	objectLength = Object.keys(applications).length;
+	
+	imageBlockDiv = document.getElementsByClassName('info-images')[0];
 
     applicationsIndex = getRandomElement(0, objectLength);
     sortedKeys = Object.keys(applications).sort();
@@ -30,7 +37,7 @@ function createBlock() {
 	imageBlock = document.createElement('div');
 	imageBlock.className = 'image-block clearfix';
 
-	imageBlockDiv = document.getElementsByClassName('info-images')[0];
+	
 
 	imageBlockDiv.appendChild(imageBlock);
 
@@ -38,26 +45,24 @@ function createBlock() {
 	imageElement.className = 'image';
 	imageElement.src = applications[randomAplicationsName].image;
 
-	imageElementDiv = document.getElementsByClassName('image-block clearfix')[0];
-
-	imageElementDiv.appendChild(imageElement);
+	imageBlock.appendChild(imageElement);
 
 	spanElement = document.createElement('span');
 	spanElement.className = 'text-under-image heading-level-4';
 	spanElement.innerHTML = applications[randomAplicationsName].head;
 
-	imageElementDiv.appendChild(spanElement);
+	imageBlock.appendChild(spanElement);
 
 	span2Element = document.createElement('span');
 	span2Element.className = 'date-under-text';
 	span2Element.innerHTML = applications[randomAplicationsName].date;
 
-	imageElementDiv.appendChild(span2Element);
+	imageBlock.appendChild(span2Element);
 }
 
 i = 0;
 do {
-	createBlock();
+	createRandomBlock();
 	i++;
 	console.log(i);
 }
