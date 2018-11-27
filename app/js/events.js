@@ -97,44 +97,52 @@ function removeActiveDot (middle) {
 function switchRight () {
 	let imageBlock = document.querySelector('.images-line');
 	if (position <= switchToEnd && position > 0) {
+		removeActiveDot(position);
 		position --;
 		let switchLength = -position * 362;
 		imageBlock.style.marginLeft = switchLength + 'px';
 		console.log("position right",position);
 		console.log("switchLength right",switchLength);
 		createActiveDot(position);
-		removeActiveDot(position+1);
-	}
+}
 	else if (position == 0) {
+		removeActiveDot(position);
 		position = switchToEnd
 		console.log("switchToEnd right", switchToEnd)
 		let switchLength = -position * 362;
 		imageBlock.style.marginLeft = switchLength + 'px';
 		console.log("position = 0 right",position);
-		console.log("switchLength Right",switchLength);
+		console.log("switchToEnd",switchToEnd);
+		createActiveDot(position);
 	}
 }
 
 function switchLeft () {
 	let imageBlock = document.querySelector('.images-line');
 	if (position < switchToEnd ) {
+		removeActiveDot(position);
 		position ++;
 		let switchLength = -position * 362;
 		imageBlock.style.marginLeft = switchLength + 'px';
 		console.log("position left",position);
 		console.log("switchLength left", switchLength)
+		createActiveDot(position);
 		}
 	else if (position == switchToEnd) {
+		removeActiveDot(position);
 		position = switchToEnd;
 		let switchLength = 0;
 		imageBlock.style.marginLeft = switchLength + 'px';
 		console.log("position == switchToEnd left",position);
 		console.log("position == switchToEnd left",switchLength);
 		position = 1;
+		createActiveDot(position-1);
 		}
 	else if (position < 1) {
+		removeActiveDot(position);
 		let switchLength = switchToEnd * 362;
 		imageBlock.style.marginLeft = -switchLength + 'px';
 		position = switchToEnd;	
+		createActiveDot(position);
 		}
 }
