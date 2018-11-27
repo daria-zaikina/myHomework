@@ -4,12 +4,17 @@ xhr.send();
 
 xhr.onreadystatechange = function () {
 if (xhr.status == 200 && xhr.readyState == 4) {
-    console.log("xhr.responseText", xhr.responseText);
     appJSON = JSON.parse(xhr.responseText);
-    console.log(appJSON.length);
-    createAllApplications(appJSON);
-	console.log(appJSON[0].image);
-	step = appJSON.length - 3;
+	console.log("appJSON.length", appJSON.length);
+	imagesContainer = document.querySelector(".images-container");
+    widthImagesContainer = window.getComputedStyle(imagesContainer).width;
+	appsOnPage = Math.trunc(parseInt(widthImagesContainer)/330);
+	lengthApps = appJSON.length
+	switchToEnd = lengthApps - appsOnPage;
+	position = Math.trunc(lengthApps/2 - 1);
+	createAllApplications(appJSON);
+	createSwitchButtons(lengthApps);
+	createActiveDot(position);
  }
 }
 
@@ -50,46 +55,86 @@ let dateUnderText = document.createElement('div');
 	imageBlockContainer.appendChild(dateUnderText);
 };
 
+function createButton(application) {
+let dotBlockDiv = document.querySelector(".switch-dot-line");
+
+let dot = document.createElement('span');
+    dot.className = 'switch-dot_button' + ' ' + application;
+	
+    dotBlockDiv.appendChild(dot);
+}
+
+
 function createAllApplications (applications) {
+let imageBlock = document.querySelector('.images-line');
+let startLength = -position * 362;
+    imageBlock.style.marginLeft = startLength + 'px'; 
 var i = 0;
 do {
     createApplication(applications[i]);
 	i ++;
 }
 while (i < applications.length);
+console.log("startLength", startLength);
 };
 
-var position = 1;
+function createSwitchButtons(length) {
+for (i=0; i < length; i++) {
+	createButton(i);
+	console.log("App", i);
+}
+};
+
+function createActiveDot (middle) {
+	let dots = document.getElementsByClassName("switch-dot_button")[middle];
+	    dots.className =  'switch-dot_button' + ' ' + 'active';
+}
+function removeActiveDot (middle) {
+	let dots = document.getElementsByClassName("switch-dot_button")[middle];
+	    dots.className =  'switch-dot_button';
+}
+
 function switchRight () {
-	if (position = 1) {
-		let imageBlock = document.querySelector('.images-line');
-		let switchLength = step * 363;
-		imageBlock.style.marginLeft = -switchLength + 'px';
+	let imageBlock = document.querySelector('.images-line');
+	if (position <= switchToEnd && position > 0) {
 		position --;
-		console.log("step",step);
-	};
-	if (position < step && position > 1) {
-		let imageBlock = document.querySelector('.images-line');
-		let switchLength = position * 363;
+		let switchLength = -position * 362;
 		imageBlock.style.marginLeft = switchLength + 'px';
-		position --;
-		console.log("step",step);
-	};
+		console.log("position right",position);
+		console.log("switchLength right",switchLength);
+		createActiveDot(position);
+		removeActiveDot(position+1);
+	}
+	else if (position == 0) {
+		position = switchToEnd
+		console.log("switchToEnd right", switchToEnd)
+		let switchLength = -position * 362;
+		imageBlock.style.marginLeft = switchLength + 'px';
+		console.log("position = 0 right",position);
+		console.log("switchLength Right",switchLength);
+	}
 }
 
 function switchLeft () {
-	if (position >= step) {
 	let imageBlock = document.querySelector('.images-line');
-	let switchLength =  0;
-	imageBlock.style.marginLeft = switchLength + 'px';
-	position ++;
-	console.log("step",step);
-	};
-	if (position < step) {
-	let imageBlock = document.querySelector('.images-line');
-	let switchLength =  -position * 363;
-	imageBlock.style.marginLeft = switchLength + 'px';
-	position ++;
-	console.log("step",step);
-	};
+	if (position < switchToEnd ) {
+		position ++;
+		let switchLength = -position * 362;
+		imageBlock.style.marginLeft = switchLength + 'px';
+		console.log("position left",position);
+		console.log("switchLength left", switchLength)
+		}
+	else if (position == switchToEnd) {
+		position = switchToEnd;
+		let switchLength = 0;
+		imageBlock.style.marginLeft = switchLength + 'px';
+		console.log("position == switchToEnd left",position);
+		console.log("position == switchToEnd left",switchLength);
+		position = 1;
+		}
+	else if (position < 1) {
+		let switchLength = switchToEnd * 362;
+		imageBlock.style.marginLeft = -switchLength + 'px';
+		position = switchToEnd;	
+		}
 }

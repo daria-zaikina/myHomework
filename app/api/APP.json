@@ -1,0 +1,50 @@
+[
+    {"id": 1,
+     "title": "Стандартный пакет1",
+     "image": "assets/shot-1.png",
+     "lastUpdate": 1489195793649,
+     "guid": "e607"
+    },
+    {"id": 2,
+        "title": "Новый ЦФТ-Банк2",
+        "image": "assets/shot-2.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e608"
+    },
+    {"id": 3,
+        "title": "Каталог разработок3",
+        "image": "assets/shot-3.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e609"
+       },
+       {"id": 4,
+        "title": "Аренда сейфов4",
+        "image": "assets/shot-2.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e610"
+       },
+       {"id": 5,
+        "title": "Банковские гарантии5",
+        "image": "assets/shot-1.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e611"
+       },
+       {"id": 6,
+        "title": "Казначейство6",
+        "image": "assets/shot-1.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e612"
+       },
+       {"id": 7,
+        "title": "Страхование7",
+        "image": "assets/shot-1.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e613"
+       },
+       {"id": 8,
+        "title": "Факторинговое обслуживание8",
+        "image": "assets/shot-1.png",
+        "lastUpdate": 1489195793649,
+        "guid": "e614"
+       }
+]

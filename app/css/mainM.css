@@ -80,7 +80,7 @@
     max-width: 1056px;
     overflow: hidden;
     border: solid 1px #d8d8d8;
-     border-color: #d8d8d8 transparent transparent;
+    border-color: #d8d8d8 transparent transparent;
 }
 .images-line {
     width: 9000px;
@@ -221,6 +221,36 @@
      background: var(--white);
      outline: none;
      cursor: pointer;
+}
+.switch-dot-container {
+    padding-top: 20px;
+    max-width: 400px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.switch-dot-line {
+    width: 9000px;
+    list-style: none;
+    display: block;
+    padding: 0px; 
+    margin: 0px; 
+}
+.switch-dot_button {
+    background: #358ed7;
+    outline: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: solid 1px #020202;
+    margin-right: 30px;
+}
+.switch-buttons_dot:hover {
+    background: #0f416b;
+}
+.active {
+    background: #ddbe0f; 
 }
 .clearfix::after {
 	content:'';
